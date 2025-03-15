@@ -1,58 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIP & SWP Calculator</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        .container { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; }
+        input, button { width: 100%; margin: 10px 0; padding: 10px; }
+    </style>
 </head>
 <body>
 
+    <h2>SIP & SWP Calculator</h2>
     <div class="container">
-        <h1>SIP & SWP Calculator</h1>
+        <h3>SIP Calculator</h3>
+        <input type="number" id="sipAmount" placeholder="Monthly Investment (₹)">
+        <input type="number" id="sipRate" placeholder="Annual Return Rate (%)">
+        <input type="number" id="sipYears" placeholder="Investment Period (Years)">
+        <button onclick="calculateSIP()">Calculate SIP</button>
+        <p id="sipResult"></p>
 
-        <div class="tabs">
-            <button onclick="showCalculator('sip')">SIP Calculator</button>
-            <button onclick="showCalculator('swp')">SWP Calculator</button>
-        </div>
-
-        <!-- SIP Calculator -->
-        <div id="sip-calculator" class="calculator">
-            <h2>SIP Calculator</h2>
-            <label>Monthly Investment (₹):</label>
-            <input type="number" id="sipAmount" placeholder="Enter Amount">
-            
-            <label>Annual Return Rate (%):</label>
-            <input type="number" id="sipRate" placeholder="Enter Rate">
-            
-            <label>Time Period (Years):</label>
-            <input type="number" id="sipYears" placeholder="Enter Years">
-
-            <button onclick="calculateSIP()">Calculate SIP</button>
-            <p id="sipResult"></p>
-        </div>
-
-        <!-- SWP Calculator -->
-        <div id="swp-calculator" class="calculator">
-            <h2>SWP Calculator</h2>
-            <label>Total Investment (₹):</label>
-            <input type="number" id="swpTotal" placeholder="Enter Total Amount">
-            
-            <label>Withdrawal per Month (₹):</label>
-            <input type="number" id="swpWithdraw" placeholder="Enter Withdrawal Amount">
-            
-            <label>Annual Return Rate (%):</label>
-            <input type="number" id="swpRate" placeholder="Enter Rate">
-            
-            <label>Time Period (Years):</label>
-            <input type="number" id="swpYears" placeholder="Enter Years">
-
-            <button onclick="calculateSWP()">Calculate SWP</button>
-            <p id="swpResult"></p>
-        </div>
-
+        <h3>SWP Calculator</h3>
+        <input type="number" id="swpAmount" placeholder="Withdrawal Amount (₹)">
+        <input type="number" id="swpRate" placeholder="Annual Return Rate (%)">
+        <input type="number" id="swpYears" placeholder="Withdrawal Period (Years)">
+        <button onclick="calculateSWP()">Calculate SWP</button>
+        <p id="swpResult"></p>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function calculateSIP() {
+            let P = parseFloat(document.getElementById("sipAmount").value);
+            let r = parseFloat(document.getElementById("sipRate").value) / 100 / 12;
+            let n = parseFloat(document.getElementById("sipYears").value) * 12;
+            let futureValue = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+            document.getElementById("sipResult").innerHTML = "Future Value: ₹" + futureValue.toFixed(2);
+        }
+
+        function calculateSWP() {
+            let W = parseFloat(document.getElementById("swpAmount").value);
+            let r = parseFloat(document.getElementById("swpRate").value) / 100 / 12;
+            let n = parseFloat(document.getElementById("swpYears").value) * 12;
+            let totalWithdrawals = W * n;
+            document.getElementById("swpResult").innerHTML = "Total Withdrawals: ₹" + totalWithdrawals.toFixed(2);
+        }
+    </script>
+
 </body>
 </html>
