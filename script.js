@@ -1,57 +1,44 @@
-
-// Elements Selection
-const sipBtn = document.getElementById("sipBtn");
-const swpBtn = document.getElementById("swpBtn");
-const sipForm = document.getElementById("sipForm");
-const swpForm = document.getElementById("swpForm");
-
-// Show SIP Form
-sipBtn.addEventListener("click", function () {
-    sipForm.style.display = "block";
-    swpForm.style.display = "none";
-});
-
-// Show SWP Form
-swpBtn.addEventListener("click", function () {
-    sipForm.style.display = "none";
-    swpForm.style.display = "block";
-});
+// Show the selected calculator
+function showCalculator(type) {
+    document.getElementById("sip-calculator").style.display = (type === "sip") ? "block" : "none";
+    document.getElementById("swp-calculator").style.display = (type === "swp") ? "block" : "none";
+}
 
 // SIP Calculation
 function calculateSIP() {
-    let monthlyInvestment = parseFloat(document.getElementById("sipInvestment").value);
-    let rate = parseFloat(document.getElementById("sipRate").value) / 100 / 12;
-    let months = parseInt(document.getElementById("sipMonths").value);
+    let P = parseFloat(document.getElementById("sipAmount").value);
+    let r = parseFloat(document.getElementById("sipRate").value) / 100 / 12;
+    let n = parseFloat(document.getElementById("sipYears").value) * 12;
 
-    if (isNaN(monthlyInvestment) || isNaN(rate) || isNaN(months)) {
-        alert("कृपया सभी मान्य इनपुट डालें!");
+    if (isNaN(P) || isNaN(r) || isNaN(n) || P <= 0 || r <= 0 || n <= 0) {
+        document.getElementById("sipResult").innerText = "Please enter valid values.";
         return;
     }
 
-    let sipValue = (monthlyInvestment * ((Math.pow(1 + rate, months) - 1) / rate)) * (1 + rate);
-    document.getElementById("sipResult").innerText = `Final Amount: ₹${sipValue.toFixed(2)}`;
+    let maturity = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+    document.getElementById("sipResult").innerText = "Final Value: ₹" + maturity.toFixed(2);
 }
 
 // SWP Calculation
 function calculateSWP() {
-    let totalInvestment = parseFloat(document.getElementById("swpInvestment").value);
-    let withdrawal = parseFloat(document.getElementById("swpWithdrawal").value);
+    let investment = parseFloat(document.getElementById("swpTotal").value);
+    let withdrawal = parseFloat(document.getElementById("swpWithdraw").value);
     let rate = parseFloat(document.getElementById("swpRate").value) / 100 / 12;
-    let months = parseInt(document.getElementById("swpMonths").value);
+    let months = parseFloat(document.getElementById("swpYears").value) * 12;
 
-    if (isNaN(totalInvestment) || isNaN(withdrawal) || isNaN(rate) || isNaN(months)) {
-        alert("कृपया सभी मान्य इनपुट डालें!");
+    if (isNaN(investment) || isNaN(withdrawal) || isNaN(rate) || isNaN(months) || investment <= 0 || withdrawal <= 0 || rate < 0 || months <= 0) {
+        document.getElementById("swpResult").innerText = "Please enter valid values.";
         return;
     }
 
-    let finalValue = totalInvestment;
+    let balance = investment;
     for (let i = 0; i < months; i++) {
-        finalValue = (finalValue - withdrawal) * (1 + rate);
-        if (finalValue <= 0) {
-            finalValue = 0;
+        balance = balance * (1 + rate) - withdrawal;
+        if (balance <= 0) {
+            balance = 0;
             break;
         }
     }
 
-    document.getElementById("swpResult").innerText = `Final Value: ₹${finalValue.toFixed(2)}`;
+    document.getElementById("swpResult").innerText = "Final Value: ₹" + balance.toFixed(2);
 }
