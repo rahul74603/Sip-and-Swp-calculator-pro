@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIP & SWP Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        .container { max-width: 400px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; }
+        input, button { width: 100%; margin: 10px 0; padding: 10px; }
+    </style>
+</head>
+<body>
+
+    <h2>SIP & SWP Calculator</h2>
+    <div class="container">
+        <h3>SIP Calculator</h3>
+        <input type="number" id="sipAmount" placeholder="Monthly Investment (₹)">
+        <input type="number" id="sipRate" placeholder="Annual Return Rate (%)">
+        <input type="number" id="sipYears" placeholder="Investment Period (Years)">
+        <button onclick="calculateSIP()">Calculate SIP</button>
+        <p id="sipResult"></p>
+
+        <h3>SWP Calculator</h3>
+        <input type="number" id="swpAmount" placeholder="Withdrawal Amount (₹)">
+        <input type="number" id="swpRate" placeholder="Annual Return Rate (%)">
+        <input type="number" id="swpYears" placeholder="Withdrawal Period (Years)">
+        <button onclick="calculateSWP()">Calculate SWP</button>
+        <p id="swpResult"></p>
+    </div>
+
+    <script>
+        function calculateSIP() {
+            let P = parseFloat(document.getElementById("sipAmount").value);
+            let r = parseFloat(document.getElementById("sipRate").value) / 100 / 12;
+            let n = parseFloat(document.getElementById("sipYears").value) * 12;
+            let futureValue = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+            document.getElementById("sipResult").innerHTML = "Future Value: ₹" + futureValue.toFixed(2);
+        }
+
+        function calculateSWP() {
+            let W = parseFloat(document.getElementById("swpAmount").value);
+            let r = parseFloat(document.getElementById("swpRate").value) / 100 / 12;
+            let n = parseFloat(document.getElementById("swpYears").value) * 12;
+            let totalWithdrawals = W * n;
+            document.getElementById("swpResult").innerHTML = "Total Withdrawals: ₹" + totalWithdrawals.toFixed(2);
+        }
+    </script>
+
+</body>
+</html>
