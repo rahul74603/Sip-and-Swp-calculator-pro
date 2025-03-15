@@ -7,65 +7,57 @@
 </head>
 <body>
     <h1>SIP and SWP Calculator</h1>
-    
+
     <!-- SIP Calculator -->
     <h2>SIP Calculator</h2>
     <form id="sip-form">
-        <label for="monthly-investment">Monthly Investment:</label>
-        <input type="number" id="monthly-investment" name="monthly-investment"><br><br>
-        <label for="annual-rate">Annual Rate (%):</label>
-        <input type="number" id="annual-rate" name="annual-rate"><br><br>
-        <label for="years">Years:</label>
-        <input type="number" id="years" name="years"><br><br>
-        <button type="submit">Calculate</button>
+        Monthly Investment: <input type="number" id="monthly-investment"><br><br>
+        Annual Rate (%): <input type="number" id="annual-rate"><br><br>
+        Years: <input type="number" id="years"><br><br>
+        <button type="button" onclick="calculateSIP()">Calculate</button>
     </form>
     <p id="sip-result"></p>
 
     <!-- SWP Calculator -->
     <h2>SWP Calculator</h2>
     <form id="swp-form">
-        <label for="initial-amount">Initial Amount:</label>
-        <input type="number" id="initial-amount" name="initial-amount"><br><br>
-        <label for="monthly-withdrawal">Monthly Withdrawal:</label>
-        <input type="number" id="monthly-withdrawal" name="monthly-withdrawal"><br><br>
-        <label for="annual-rate-swp">Annual Rate (%):</label>
-        <input type="number" id="annual-rate-swp" name="annual-rate-swp"><br><br>
-        <label for="years-swp">Years:</label>
-        <input type="number" id="years-swp" name="years-swp"><br><br>
-        <button type="submit">Calculate</button>
+        Initial Amount: <input type="number" id="initial-amount"><br><br>
+        Monthly Withdrawal: <input type="number" id="monthly-withdrawal"><br><br>
+        Annual Rate (%): <input type="number" id="annual-rate-swp"><br><br>
+        Years: <input type="number" id="years-swp"><br><br>
+        <button type="button" onclick="calculateSWP()">Calculate</button>
     </form>
     <p id="swp-result"></p>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
-        // SIP Calculator
-        document.getElementById('sip-form').addEventListener('submit', function(event) {
-            event.preventDefault();
+        function calculateSIP() {
             const monthlyInvestment = parseFloat(document.getElementById('monthly-investment').value);
-            const annualRate = parseFloat(document.getElementById('annual-rate').value);
+            const annualRate = parseFloat(document.getElementById('annual-rate').value) / 100;
             const years = parseInt(document.getElementById('years').value);
 
-            axios.post('/calculate/sip', { monthlyInvestment, annualRate, years })
-                .then(response => {
-                    document.getElementById('sip-result').innerText = 'Future value of your SIP investment: ₹' + response.data;
-                })
-                .catch(error => console.error(error));
-        });
+            const months = years * 12;
+            const monthlyRate = annualRate / 12;
+            const futureValue = monthlyInvestment * (((1 + monthlyRate) ** months - 1) / monthlyRate) * (1 + monthlyRate);
 
-        // SWP Calculator
-        document.getElementById('swp-form').addEventListener('submit', function(event) {
-            event.preventDefault();
+            document.getElementById('sip-result').innerText = 'Future value of your SIP investment: ₹' + futureValue.toFixed(2);
+        }
+
+        function calculateSWP() {
             const initialAmount = parseFloat(document.getElementById('initial-amount').value);
             const monthlyWithdrawal = parseFloat(document.getElementById('monthly-withdrawal').value);
-            const annualRate = parseFloat(document.getElementById('annual-rate-swp').value);
+            const annualRate = parseFloat(document.getElementById('annual-rate-swp').value) / 100;
             const years = parseInt(document.getElementById('years-swp').value);
 
-            axios.post('/calculate/swp', { initialAmount, monthlyWithdrawal, annualRate, years })
-                .then(response => {
-                    document.getElementById('swp-result').innerText = 'Remaining corpus after SWP: ₹' + response.data;
-                })
-                .catch(error => console.error(error));
-        });
+            let remainingCorpus = initialAmount;
+            const months = years * 12;
+            const monthlyRate = annualRate / 12;
+
+            for (let i = 0; i < months; i++) {
+                remainingCorpus = remainingCorpus * (1 + monthlyRate) - monthlyWithdrawal;
+            }
+
+            document.getElementById('swp-result').innerText = 'Remaining corpus after SWP: ₹' + remainingCorpus.toFixed(2);
+        }
     </script>
 </body>
 </html>
