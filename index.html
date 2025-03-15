@@ -4,30 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIP and SWP Calculator</title>
+    <style>
+        /* Paste the CSS code here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007BFF;
+            margin-top: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+            color: #28a745;
+        }
+    </style>
 </head>
 <body>
     <h1>SIP and SWP Calculator</h1>
 
     <!-- SIP Calculator -->
-    <h2>SIP Calculator</h2>
-    <form id="sip-form">
-        Monthly Investment: <input type="number" id="monthly-investment"><br><br>
-        Annual Rate (%): <input type="number" id="annual-rate"><br><br>
-        Years: <input type="number" id="years"><br><br>
-        <button type="button" onclick="calculateSIP()">Calculate</button>
-    </form>
-    <p id="sip-result"></p>
+    <div class="calculator">
+        <h2>SIP Calculator</h2>
+        <form id="sip-form">
+            <label for="monthly-investment">Monthly Investment:</label>
+            <input type="number" id="monthly-investment"><br><br>
+            <label for="annual-rate">Annual Rate (%):</label>
+            <input type="number" id="annual-rate"><br><br>
+            <label for="years">Years:</label>
+            <input type="number" id="years"><br><br>
+            <button type="button" onclick="calculateSIP()">Calculate</button>
+        </form>
+        <p id="sip-result"></p>
+    </div>
 
     <!-- SWP Calculator -->
-    <h2>SWP Calculator</h2>
-    <form id="swp-form">
-        Initial Amount: <input type="number" id="initial-amount"><br><br>
-        Monthly Withdrawal: <input type="number" id="monthly-withdrawal"><br><br>
-        Annual Rate (%): <input type="number" id="annual-rate-swp"><br><br>
-        Years: <input type="number" id="years-swp"><br><br>
-        <button type="button" onclick="calculateSWP()">Calculate</button>
-    </form>
-    <p id="swp-result"></p>
+    <div class="calculator">
+        <h2>SWP Calculator</h2>
+        <form id="swp-form">
+            <label for="initial-amount">Initial Amount:</label>
+            <input type="number" id="initial-amount"><br><br>
+            <label for="monthly-withdrawal">Monthly Withdrawal:</label>
+            <input type="number" id="monthly-withdrawal"><br><br>
+            <label for="annual-rate-swp">Annual Rate (%):</label>
+            <input type="number" id="annual-rate-swp"><br><br>
+            <label for="years-swp">Years:</label>
+            <input type="number" id="years-swp"><br><br>
+            <button type="button" onclick="calculateSWP()">Calculate</button>
+        </form>
+        <p id="swp-result"></p>
+    </div>
 
     <script>
         function calculateSIP() {
