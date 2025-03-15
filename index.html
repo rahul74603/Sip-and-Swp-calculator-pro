@@ -7,49 +7,50 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div class="container">
-        <h2>SIP & SWP Calculator</h2>
-        
-        <!-- Select SIP or SWP -->
-        <div class="button-group">
-            <button onclick="showForm('sip')">SIP Calculator</button>
-            <button onclick="showForm('swp')">SWP Calculator</button>
+        <h1>SIP & SWP Calculator</h1>
+
+        <div class="tabs">
+            <button onclick="showCalculator('sip')">SIP Calculator</button>
+            <button onclick="showCalculator('swp')">SWP Calculator</button>
         </div>
 
-        <!-- SIP Form -->
-        <div id="sip-form" class="form-container" style="display: none;">
-            <h3>SIP Calculator</h3>
+        <!-- SIP Calculator -->
+        <div id="sip-calculator" class="calculator">
+            <h2>SIP Calculator</h2>
             <label>Monthly Investment (₹):</label>
-            <input type="number" id="sipAmount" placeholder="Enter SIP Amount">
+            <input type="number" id="sipAmount" placeholder="Enter Amount">
             
-            <label>Expected Return Rate (p.a %):</label>
-            <input type="number" id="sipRate" placeholder="Enter Return Rate">
+            <label>Annual Return Rate (%):</label>
+            <input type="number" id="sipRate" placeholder="Enter Rate">
             
             <label>Time Period (Years):</label>
-            <input type="number" id="sipTime" placeholder="Enter Time in Years">
-            
-            <button onclick="calculateSIP()">Calculate</button>
+            <input type="number" id="sipYears" placeholder="Enter Years">
+
+            <button onclick="calculateSIP()">Calculate SIP</button>
             <p id="sipResult"></p>
         </div>
 
-        <!-- SWP Form -->
-        <div id="swp-form" class="form-container" style="display: none;">
-            <h3>SWP Calculator</h3>
+        <!-- SWP Calculator -->
+        <div id="swp-calculator" class="calculator">
+            <h2>SWP Calculator</h2>
             <label>Total Investment (₹):</label>
-            <input type="number" id="swpInvestment" placeholder="Enter Total Investment">
+            <input type="number" id="swpTotal" placeholder="Enter Total Amount">
             
             <label>Withdrawal per Month (₹):</label>
-            <input type="number" id="swpWithdrawal" placeholder="Enter Monthly Withdrawal">
+            <input type="number" id="swpWithdraw" placeholder="Enter Withdrawal Amount">
             
-            <label>Expected Return Rate (p.a %):</label>
-            <input type="number" id="swpRate" placeholder="Enter Return Rate">
+            <label>Annual Return Rate (%):</label>
+            <input type="number" id="swpRate" placeholder="Enter Rate">
             
             <label>Time Period (Years):</label>
-            <input type="number" id="swpTime" placeholder="Enter Time in Years">
-            
-            <button onclick="calculateSWP()">Calculate</button>
+            <input type="number" id="swpYears" placeholder="Enter Years">
+
+            <button onclick="calculateSWP()">Calculate SWP</button>
             <p id="swpResult"></p>
         </div>
+
     </div>
 
     <script src="script.js"></script>
