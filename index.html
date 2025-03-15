@@ -22,30 +22,14 @@
         <p id="sipResult"></p>
 
         <h3>SWP Calculator</h3>
-        <input type="number" id="swpAmount" placeholder="Withdrawal Amount (₹)">
+        <input type="number" id="swpInvestment" placeholder="Total Investment (₹)">
+        <input type="number" id="swpAmount" placeholder="Withdrawal per Month (₹)">
         <input type="number" id="swpRate" placeholder="Annual Return Rate (%)">
-        <input type="number" id="swpYears" placeholder="Withdrawal Period (Years)">
+        <input type="number" id="swpYears" placeholder="Time Period (Years)">
         <button onclick="calculateSWP()">Calculate SWP</button>
         <p id="swpResult"></p>
     </div>
 
-    <script>
-        function calculateSIP() {
-            let P = parseFloat(document.getElementById("sipAmount").value);
-            let r = parseFloat(document.getElementById("sipRate").value) / 100 / 12;
-            let n = parseFloat(document.getElementById("sipYears").value) * 12;
-            let futureValue = P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
-            document.getElementById("sipResult").innerHTML = "Future Value: ₹" + futureValue.toFixed(2);
-        }
-
-        function calculateSWP() {
-            let W = parseFloat(document.getElementById("swpAmount").value);
-            let r = parseFloat(document.getElementById("swpRate").value) / 100 / 12;
-            let n = parseFloat(document.getElementById("swpYears").value) * 12;
-            let totalWithdrawals = W * n;
-            document.getElementById("swpResult").innerHTML = "Total Withdrawals: ₹" + totalWithdrawals.toFixed(2);
-        }
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
