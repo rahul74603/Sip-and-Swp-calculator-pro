@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sip-and-Swp-calculator-pro</title>
+    <title>SIP and SWP Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -80,15 +80,12 @@
 
     <!-- Google Analytics Script -->
     <script>
-        // Ensure the DOM is fully loaded before running the script
         document.addEventListener('DOMContentLoaded', function () {
-            // Dynamically load the Google Analytics script
             var script = document.createElement('script');
             script.src = 'https://www.googletagmanager.com/gtag/js?id=UA-10344929805';
             script.async = true;
             document.head.appendChild(script);
 
-            // Initialize Google Analytics
             window.dataLayer = window.dataLayer || [];
             function gtag() { dataLayer.push(arguments); }
             gtag('js', new Date());
@@ -132,6 +129,7 @@
     </div>
 
     <script>
+        // SIP Calculator Function
         function calculateSIP() {
             const monthlyInvestment = parseFloat(document.getElementById('monthly-investment').value) || 0;
             const annualRate = parseFloat(document.getElementById('annual-rate').value) / 100 || 0;
@@ -149,6 +147,7 @@
             document.getElementById('sip-result').innerText = 'Future value of your SIP investment: ₹' + futureValue.toFixed(2);
         }
 
+        // SWP Calculator Function
         function calculateSWP() {
             const initialAmount = parseFloat(document.getElementById('initial-amount').value) || 0;
             const monthlyWithdrawal = parseFloat(document.getElementById('monthly-withdrawal').value) || 0;
