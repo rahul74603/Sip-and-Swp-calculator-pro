@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sip-and-Swp-calculator-pro</title>
     <style>
-        /* Paste the CSS code here */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
@@ -80,7 +79,7 @@
     </style>
 
     <!-- Google Analytics Tracking Code -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-10344929805"></script>
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=UA-10344929805"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
@@ -125,9 +124,14 @@
 
     <script>
         function calculateSIP() {
-            const monthlyInvestment = parseFloat(document.getElementById('monthly-investment').value);
-            const annualRate = parseFloat(document.getElementById('annual-rate').value) / 100;
-            const years = parseInt(document.getElementById('years').value);
+            const monthlyInvestment = parseFloat(document.getElementById('monthly-investment').value) || 0;
+            const annualRate = parseFloat(document.getElementById('annual-rate').value) / 100 || 0;
+            const years = parseInt(document.getElementById('years').value) || 0;
+
+            if (isNaN(monthlyInvestment) || isNaN(annualRate) || isNaN(years)) {
+                document.getElementById('sip-result').innerText = 'Please enter valid numbers.';
+                return;
+            }
 
             const months = years * 12;
             const monthlyRate = annualRate / 12;
@@ -137,10 +141,15 @@
         }
 
         function calculateSWP() {
-            const initialAmount = parseFloat(document.getElementById('initial-amount').value);
-            const monthlyWithdrawal = parseFloat(document.getElementById('monthly-withdrawal').value);
-            const annualRate = parseFloat(document.getElementById('annual-rate-swp').value) / 100;
-            const years = parseInt(document.getElementById('years-swp').value);
+            const initialAmount = parseFloat(document.getElementById('initial-amount').value) || 0;
+            const monthlyWithdrawal = parseFloat(document.getElementById('monthly-withdrawal').value) || 0;
+            const annualRate = parseFloat(document.getElementById('annual-rate-swp').value) / 100 || 0;
+            const years = parseInt(document.getElementById('years-swp').value) || 0;
+
+            if (isNaN(initialAmount) || isNaN(monthlyWithdrawal) || isNaN(annualRate) || isNaN(years)) {
+                document.getElementById('swp-result').innerText = 'Please enter valid numbers.';
+                return;
+            }
 
             let remainingCorpus = initialAmount;
             const months = years * 12;
