@@ -78,13 +78,22 @@
         }
     </style>
 
-    <!-- Google Analytics Tracking Code -->
-    <script defer src="https://www.googletagmanager.com/gtag/js?id=UA-10344929805"></script>
+    <!-- Google Analytics Script -->
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'UA-10344929805');
+        // Ensure the DOM is fully loaded before running the script
+        document.addEventListener('DOMContentLoaded', function () {
+            // Dynamically load the Google Analytics script
+            var script = document.createElement('script');
+            script.src = 'https://www.googletagmanager.com/gtag/js?id=UA-10344929805';
+            script.async = true;
+            document.head.appendChild(script);
+
+            // Initialize Google Analytics
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'UA-10344929805');
+        });
     </script>
 </head>
 <body>
