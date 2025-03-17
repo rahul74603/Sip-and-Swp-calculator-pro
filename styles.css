@@ -9,18 +9,21 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    line-height: 1.6; /* Improved readability */
 }
 
 h1 {
     text-align: center;
     color: #007BFF;
     margin-top: 20px;
+    font-size: 2rem; /* Responsive font size */
 }
 
 h2 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
+    font-size: 1.5rem; /* Responsive font size */
 }
 
 .calculator {
@@ -31,12 +34,19 @@ h2 {
     width: 100%;
     max-width: 500px;
     margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effect */
+}
+
+.calculator:hover {
+    transform: translateY(-5px); /* Lift up on hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
 }
 
 label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
+    color: #555; /* Subtle color for labels */
 }
 
 input[type="number"] {
@@ -46,6 +56,13 @@ input[type="number"] {
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Focus effect */
+}
+
+input[type="number"]:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Highlight on focus */
+    outline: none;
 }
 
 button {
@@ -57,16 +74,39 @@ button {
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Hover effect */
 }
 
 button:hover {
     background-color: #0056b3;
+    transform: scale(1.02); /* Slight zoom on hover */
 }
 
-p {
+p.result {
     text-align: center;
     font-size: 18px;
     margin-top: 20px;
-    color: #28a745;
+    color: #28a745; /* Success color */
+}
+
+p.error {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 20px;
+    color: #dc3545; /* Error color */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.8rem; /* Adjust font size for smaller screens */
+    }
+
+    h2 {
+        font-size: 1.3rem; /* Adjust font size for smaller screens */
+    }
+
+    .calculator {
+        padding: 15px; /* Reduce padding for smaller screens */
+    }
 }
