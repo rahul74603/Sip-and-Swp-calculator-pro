@@ -3,206 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIP and SWP Calculator</title>
-    <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        h1 {
-            text-align: center;
-            color: #007BFF;
-            margin-top: 20px;
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .calculator {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 500px;
-            margin-bottom: 30px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-            transition: border-color 0.3s ease;
-        }
-
-        input[type="number"]:focus {
-            border-color: #007BFF;
-            outline: none;
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        p.result {
-            text-align: center;
-            font-size: 18px;
-            margin-top: 20px;
-            color: #28a745;
-        }
-
-        p.error {
-            text-align: center;
-            font-size: 16px;
-            margin-top: 20px;
-            color: #dc3545;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 600px) {
-            .calculator {
-                padding: 15px;
-            }
-
-            h1 {
-                font-size: 24px;
-            }
-
-            h2 {
-                font-size: 20px;
-            }
-        }
-    </style>
+    <title>SIP & SWP Calculator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>SIP and SWP Calculator</h1>
 
-    <!-- SIP Calculator -->
-    <div class="calculator">
-        <h2>SIP Calculator</h2>
-        <form id="sip-form">
-            <label for="monthly-investment">Monthly Investment:</label>
-            <input type="number" id="monthly-investment" aria-label="Monthly Investment"><br><br>
-            <label for="annual-rate">Annual Rate (%):</label>
-            <input type="number" id="annual-rate" aria-label="Annual Rate"><br><br>
-            <label for="years">Years:</label>
-            <input type="number" id="years" aria-label="Years"><br><br>
-            <button type="button" onclick="calculateSIP()" aria-label="Calculate SIP">Calculate</button>
-        </form>
-        <p id="sip-result" class="result"></p>
-        <p id="sip-error" class="error"></p>
+    <!-- Header -->
+    <header>
+        <h1>SIP & SWP Calculator</h1>
+    </header>
+
+    <div class="container">
+        <!-- SIP Calculator -->
+        <div class="calculator">
+            <h2>SIP Calculator</h2>
+            <form id="sip-form">
+                <label for="monthly-investment">Monthly Investment:</label>
+                <input type="number" id="monthly-investment" placeholder="Enter Amount">
+                
+                <label for="annual-rate">Annual Rate (%):</label>
+                <input type="number" id="annual-rate" placeholder="Enter Annual Rate">
+                
+                <label for="years">Years:</label>
+                <input type="number" id="years" placeholder="Enter Years">
+
+                <button type="button" onclick="calculateSIP()">Calculate</button>
+            </form>
+            <p id="sip-result" class="result"></p>
+            <p id="sip-error" class="error"></p>
+        </div>
+
+        <!-- SWP Calculator -->
+        <div class="calculator">
+            <h2>SWP Calculator</h2>
+            <form id="swp-form">
+                <label for="initial-amount">Initial Amount:</label>
+                <input type="number" id="initial-amount" placeholder="Enter Initial Amount">
+                
+                <label for="monthly-withdrawal">Monthly Withdrawal:</label>
+                <input type="number" id="monthly-withdrawal" placeholder="Enter Monthly Withdrawal">
+                
+                <label for="annual-rate-swp">Annual Rate (%):</label>
+                <input type="number" id="annual-rate-swp" placeholder="Enter Annual Rate">
+                
+                <label for="years-swp">Years:</label>
+                <input type="number" id="years-swp" placeholder="Enter Years">
+
+                <button type="button" onclick="calculateSWP()">Calculate</button>
+            </form>
+            <p id="swp-result" class="result"></p>
+            <p id="swp-error" class="error"></p>
+        </div>
     </div>
 
-    <!-- SWP Calculator -->
-    <div class="calculator">
-        <h2>SWP Calculator</h2>
-        <form id="swp-form">
-            <label for="initial-amount">Initial Amount:</label>
-            <input type="number" id="initial-amount" aria-label="Initial Amount"><br><br>
-            <label for="monthly-withdrawal">Monthly Withdrawal:</label>
-            <input type="number" id="monthly-withdrawal" aria-label="Monthly Withdrawal"><br><br>
-            <label for="annual-rate-swp">Annual Rate (%):</label>
-            <input type="number" id="annual-rate-swp" aria-label="Annual Rate"><br><br>
-            <label for="years-swp">Years:</label>
-            <input type="number" id="years-swp" aria-label="Years"><br><br>
-            <button type="button" onclick="calculateSWP()" aria-label="Calculate SWP">Calculate</button>
-        </form>
-        <p id="swp-result" class="result"></p>
-        <p id="swp-error" class="error"></p>
-    </div>
+    <script src="script.js"></script>
 
-    <script>
-        // SIP Calculator Function
-        function calculateSIP() {
-            const monthlyInvestment = parseFloat(document.getElementById('monthly-investment').value) || 0;
-            const annualRate = parseFloat(document.getElementById('annual-rate').value) / 100 || 0;
-            const years = parseInt(document.getElementById('years').value) || 0;
-
-            const sipError = document.getElementById('sip-error');
-            const sipResult = document.getElementById('sip-result');
-
-            // Clear previous results and errors
-            sipError.innerText = '';
-            sipResult.innerText = '';
-
-            if (isNaN(monthlyInvestment) || isNaN(annualRate) || isNaN(years) || monthlyInvestment <= 0 || annualRate <= 0 || years <= 0) {
-                sipError.innerText = 'Please enter valid positive numbers.';
-                return;
-            }
-
-            const months = years * 12;
-            const monthlyRate = annualRate / 12;
-            const futureValue = monthlyInvestment * (((1 + monthlyRate) ** months - 1) / monthlyRate) * (1 + monthlyRate);
-
-            sipResult.innerText = 'Future value of your SIP investment: ₹' + futureValue.toFixed(2);
-        }
-
-        // SWP Calculator Function
-        function calculateSWP() {
-            const initialAmount = parseFloat(document.getElementById('initial-amount').value) || 0;
-            const monthlyWithdrawal = parseFloat(document.getElementById('monthly-withdrawal').value) || 0;
-            const annualRate = parseFloat(document.getElementById('annual-rate-swp').value) / 100 || 0;
-            const years = parseInt(document.getElementById('years-swp').value) || 0;
-
-            const swpError = document.getElementById('swp-error');
-            const swpResult = document.getElementById('swp-result');
-
-            // Clear previous results and errors
-            swpError.innerText = '';
-            swpResult.innerText = '';
-
-            if (isNaN(initialAmount) || isNaN(monthlyWithdrawal) || isNaN(annualRate) || isNaN(years) || initialAmount <= 0 || monthlyWithdrawal <= 0 || annualRate <= 0 || years <= 0) {
-                swpError.innerText = 'Please enter valid positive numbers.';
-                return;
-            }
-
-            let remainingCorpus = initialAmount;
-            const months = years * 12;
-            const monthlyRate = annualRate / 12;
-
-            for (let i = 0; i < months; i++) {
-                remainingCorpus = remainingCorpus * (1 + monthlyRate) - monthlyWithdrawal;
-                if (remainingCorpus <= 0) {
-                    swpResult.innerText = 'Your corpus will be exhausted before the end of the period.';
-                    return;
-                }
-            }
-
-            swpResult.innerText = 'Remaining corpus after SWP: ₹' + remainingCorpus.toFixed(2);
-        }
-    </script>
 </body>
 </html>
