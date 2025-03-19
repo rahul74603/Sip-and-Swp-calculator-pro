@@ -1,6 +1,6 @@
 /* General Styles */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: #f4f4f9;
     color: #333;
     margin: 0;
@@ -9,104 +9,130 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
-    line-height: 1.6; /* Improved readability */
+    line-height: 1.6;
 }
 
-h1 {
+/* Header */
+header {
+    background-color: #007BFF;
+    width: 100%;
+    padding: 15px 0;
     text-align: center;
-    color: #007BFF;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: #fff;
+    margin: 0;
+    font-size: 2rem;
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 600px;
     margin-top: 20px;
-    font-size: 2rem; /* Responsive font size */
 }
 
-h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-    font-size: 1.5rem; /* Responsive font size */
-}
-
+/* Calculator Box */
 .calculator {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 500px;
     margin-bottom: 30px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .calculator:hover {
-    transform: translateY(-5px); /* Lift up on hover */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
+/* Headings */
+h2 {
+    text-align: center;
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* Labels */
 label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #555; /* Subtle color for labels */
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #555;
 }
 
+/* Input Fields */
 input[type="number"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 5px;
     font-size: 16px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Focus effect */
+    transition: all 0.3s ease;
 }
 
 input[type="number"]:focus {
     border-color: #007BFF;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Highlight on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     outline: none;
 }
 
+/* Buttons */
 button {
     width: 100%;
     padding: 12px;
-    background-color: #007BFF;
+    background: linear-gradient(90deg, #007BFF, #0056b3);
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Hover effect */
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    background-color: #0056b3;
-    transform: scale(1.02); /* Slight zoom on hover */
+    background: linear-gradient(90deg, #0056b3, #004191);
+    transform: scale(1.02);
 }
 
-p.result {
+/* Results */
+.result {
     text-align: center;
     font-size: 18px;
-    margin-top: 20px;
-    color: #28a745; /* Success color */
+    margin-top: 15px;
+    font-weight: bold;
+    color: #28a745;
 }
 
-p.error {
+.error {
     text-align: center;
     font-size: 16px;
-    margin-top: 20px;
-    color: #dc3545; /* Error color */
+    margin-top: 15px;
+    font-weight: bold;
+    color: #dc3545;
 }
 
 /* Responsive Design */
 @media (max-width: 600px) {
-    h1 {
-        font-size: 1.8rem; /* Adjust font size for smaller screens */
+    header h1 {
+        font-size: 1.8rem;
     }
 
-    h2 {
-        font-size: 1.3rem; /* Adjust font size for smaller screens */
+    .container {
+        width: 100%;
+        padding: 0 10px;
     }
 
     .calculator {
-        padding: 15px; /* Reduce padding for smaller screens */
+        padding: 15px;
     }
 }
